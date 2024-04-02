@@ -6,6 +6,7 @@ for(let i = 0; i < button.length; i++){
         const buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     })
 } 
 
@@ -14,7 +15,7 @@ for(let i = 0; i < button.length; i++){
 document.addEventListener("keypress", function(event){    
      
     makeSound(event.key);
-   
+    buttonAnimation(event.key);
     
 })
 
@@ -62,5 +63,12 @@ function makeSound(key){
     }
 }
 
-// const audio = new Audio('sounds/tom-1.mp3');
-// audio.play();
+function buttonAnimation(currentKey) {
+
+    const activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 120);
+}
